@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="SpringView" customModule="Filterer" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -40,6 +40,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2s-9A-ZSF">
                                                 <rect key="frame" x="300" y="1.5" width="150" height="30"/>
                                                 <state key="normal" title="Compare"/>
+                                                <connections>
+                                                    <action selector="onCompare:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vyr-MO-IhR"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAN-r5-eOf">
                                                 <rect key="frame" x="450" y="0.0" width="150" height="33"/>
@@ -75,7 +78,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ic-Mg-cEo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7ic-Mg-cEo" customClass="SpringImageView" customModule="Filterer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="567"/>
                             </imageView>
                         </subviews>
@@ -91,6 +94,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="SIV" destination="7ic-Mg-cEo" id="m5u-hn-uRt"/>
+                        <outlet property="Sec" destination="P3t-tL-eTi" id="EoS-Qg-cj6"/>
                         <outlet property="bottomMenu" destination="bli-5K-jkH" id="8ih-vc-cy3"/>
                         <outlet property="filterBtn" destination="064-Aw-vSH" id="JM0-Cn-Jm4"/>
                         <outlet property="imageView" destination="7ic-Mg-cEo" id="Jwn-oF-jlq"/>
@@ -98,43 +103,67 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="P3t-tL-eTi">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                <view contentMode="scaleToFill" id="P3t-tL-eTi" customClass="SpringImageView" customModule="Filterer" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="314" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ZJp-9o-FXK">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="0.0" width="314" height="128"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtC-Gb-YR8">
-                                    <rect key="frame" x="0.0" y="0.0" width="48" height="128"/>
-                                    <state key="normal" title="Red"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="63" height="128"/>
+                                    <state key="normal" title="Sepia"/>
+                                    <connections>
+                                        <action selector="onRedFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wvZ-gr-TDo"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j18-wr-Tky">
-                                    <rect key="frame" x="48" y="0.0" width="48" height="128"/>
-                                    <state key="normal" title="Green"/>
+                                    <rect key="frame" x="63" y="0.0" width="63" height="128"/>
+                                    <state key="normal" title="Inverse"/>
+                                    <connections>
+                                        <action selector="onGreenFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gfz-Vn-y0N"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgN-1l-7Pf">
-                                    <rect key="frame" x="96" y="0.0" width="48" height="128"/>
-                                    <state key="normal" title="Blue"/>
+                                    <rect key="frame" x="126" y="0.0" width="63" height="128"/>
+                                    <state key="normal" title="B&amp;W"/>
+                                    <connections>
+                                        <action selector="onBlueFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yMZ-TS-X7O"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPC-F9-hbE">
-                                    <rect key="frame" x="144" y="0.0" width="48" height="128"/>
-                                    <state key="normal" title="Yellow"/>
+                                    <rect key="frame" x="189" y="0.0" width="63" height="128"/>
+                                    <state key="normal" title="Blue"/>
+                                    <connections>
+                                        <action selector="onYellowFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y6a-7F-Fpq"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doY-c3-21K">
-                                    <rect key="frame" x="192" y="0.0" width="48" height="128"/>
-                                    <state key="normal" title="Purple"/>
+                                    <rect key="frame" x="251" y="0.0" width="63" height="128"/>
+                                    <state key="normal" title="Cartoon"/>
+                                    <connections>
+                                        <action selector="onPurpleFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ecx-aR-zKa"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <accessibility key="accessibilityConfiguration" identifier="lol"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ZJp-9o-FXK" secondAttribute="trailing" id="Ex5-0n-WOF"/>
                         <constraint firstItem="ZJp-9o-FXK" firstAttribute="top" secondItem="P3t-tL-eTi" secondAttribute="top" id="VDh-Oj-iSI"/>
                         <constraint firstItem="ZJp-9o-FXK" firstAttribute="leading" secondItem="P3t-tL-eTi" secondAttribute="leading" id="gv0-Yt-SBe"/>
                         <constraint firstAttribute="bottom" secondItem="ZJp-9o-FXK" secondAttribute="bottom" id="zvv-VK-BX9"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="force">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="repeatCount">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </objects>
             <point key="canvasLocation" x="245" y="319"/>
@@ -166,7 +195,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
