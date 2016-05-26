@@ -10,6 +10,11 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet var Sec: SpringImageView!
+    @IBOutlet var btnSepia: UIButton!
+    @IBOutlet var btnInverse: UIButton!
+    @IBOutlet var btnBW: UIButton!
+    @IBOutlet var btnBlue: UIButton!
+    @IBOutlet var btnCartoon: UIButton!
 
     @IBOutlet var SIV: SpringImageView!
     @IBOutlet var bottomMenu: UIView!
@@ -25,6 +30,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var a: UIImage!
     
     
+    var arr2 = ["CISepiaTone","CIColorInvert","CIPhotoEffectMono","CIPhotoEffectProcess","CISepiaTone"]
     
     @IBAction func onshare(sender: AnyObject) {
         if imageView.image != nil {
@@ -155,6 +161,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         imageView.image = pickedImage
+        
        
     }
     
@@ -268,6 +275,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }else{
             showSecondaryMenu()
             sender.selected = true
+           var index = 0
+            let arr = [btnSepia, btnInverse, btnBW, btnBlue, btnCartoon]
+            repeat{
+                filter = CIFilter(name: arr2[index])
+                let cimage = CIImage(image: imageView.image!)
+                
+                // filter?.setDefaults()
+                filter?.setValue(cimage, forKey: kCIInputImageKey)
+                let output = filter?.outputImage
+                a = UIImage(CGImage: context.createCGImage(output!, fromRect: (output?.extent)!))
+                arr[index].setBackgroundImage(a, forState: .Normal)
+                
+                index+=1
+                print(index)
+            }while(index < 4)
         }
         }
         else {
@@ -286,7 +308,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let bottomConstraint = secondaryMenu.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
         let leftConstraint = secondaryMenu.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
         let rightConstraint = secondaryMenu.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
-        let heightConstraint = secondaryMenu.heightAnchor.constraintEqualToConstant(44)
+        let heightConstraint = secondaryMenu.heightAnchor.constraintEqualToConstant(70)
         
         NSLayoutConstraint.activateConstraints([bottomConstraint,leftConstraint,rightConstraint,heightConstraint])
         view.layoutIfNeeded()
@@ -317,6 +339,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.9)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
+        
         // Do any additional setup after loading the view, typically from a nib.
         
        
